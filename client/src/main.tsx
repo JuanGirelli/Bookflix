@@ -5,10 +5,10 @@ import './index.css';
 import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import ChoicePage from './pages/ChoicePage';
-import BooksPage from './pages/booksPage.tsx';
-import Login from './components/login.tsx';
-import Register from './components/Register.tsx';
-import ForgotPassword from './components/ForgotPassword.tsx';
+import BooksPage from './pages/BooksPage.tsx';
+import Login from './pages/Login.tsx';
+import Signup from './pages/Signup.tsx';
+import ForgotPassword from './pages/ForgotPassword.tsx';
 
 const router = createBrowserRouter([
   {
@@ -21,8 +21,8 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: 'register',
-        element: <Register />,
+        path: 'signup',
+        element: <Signup />,
       },
       {
         path: 'forgot-password',
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       {
         path: 'books',
         element: <BooksPage />,
-      },
+      },      
     ],
   },
 ]);

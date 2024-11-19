@@ -1,15 +1,24 @@
-// booksPage.tsx
 import React, { useState } from 'react';
 
 const BooksPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [books, setBooks] = useState<any[]>([]);
+  interface Book {
+    id: string;
+    volumeInfo: {
+      title: string;
+      authors?: string[];
+    };
+  }
+
+  const [books, setBooks] = useState<Book[]>([]);
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`);
+     // const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`);
+
+      const response = await fetch(`/api/books?q=${searchTerm}`);
       const data = await response.json();
-      setBooks(data.items || []);
+      setBooks(data.items || data.list || []);
     } catch (error) {
       console.error('Error fetching books:', error);
     }
@@ -28,8 +37,8 @@ const BooksPage: React.FC = () => {
       <div>
         {books.map((book, index) => (
           <div key={index}>
-            <h3>{book.volumeInfo.title}</h3>
-            <p>{book.volumeInfo.authors?.join(', ')}</p>
+            <h3>{book.title}</h3>
+            <p>{book.authors?.join(', ')}</p>
           </div>
         ))}
       </div>

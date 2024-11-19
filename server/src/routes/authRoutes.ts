@@ -9,13 +9,16 @@ dotenv.config();
 
 const router = Router();
 
-router.post('/login', async (req: Request, res: Response) => {
+router.post('/login', async (req: Request, res: Response) => { // POST: /auth/login
 
-    const { userId, password } = req.body;
+    const { userIdOrEmail, password } = req.body;
+
+    console.log(userIdOrEmail);
   
     const user = await User.findOne({
-      where: { username: userId },
+      where: { username: userIdOrEmail },
     });
+
   
     if (!user) {
       return res.status(401).json({ message: 'Authentication failed' });
@@ -31,10 +34,12 @@ router.post('/login', async (req: Request, res: Response) => {
   
     const secretKey = process.env.JWT_SECRET_KEY || '';
   
-    const token = jwt.sign({ userId: userId }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ userIdOrEmail: userIdOrEmail }, secretKey, { expiresIn: '1h' });
   
     return res.json({ token });
   
   }); // POST: /auth/login
+
+
 
 export default router;
