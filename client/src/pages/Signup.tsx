@@ -26,46 +26,13 @@ const Signup: React.FC = () => {
       setAlert({ type: 'danger', message: 'Passwords do not match.' });
       return;
     }
-
-    try {
-      const response = await fetch('/api/user/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userId,
-          email,
-          password,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        if (data.message === 'User already exists') {
-          setAlert({
-            type: 'warning',
-            message: 'User already exists. Kindly login.',
-            navigate: true,
-          });
-        } else {
-          throw new Error(data.message || 'Signup failed.');
-        }
-        return;
-      }
-
-      setAlert({ type: 'success', message: 'Registered successfully!' });
-
-      // Redirect to login page after success
-      setTimeout(() => navigate('/'), 2000);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setAlert({ type: 'danger', message: error.message });
-      } else {
-        setAlert({ type: 'danger', message: 'An unknown error occurred.' });
-      }
+    if (findUserById(userId)) {
+      setAlert({ type: 'warning', message: 'User ID already exists.' });
+      return;
     }
+    registerUser({ userId, email, password });
+    setAlert({ type: 'success', message: 'Registered successfully!' });
+    setTimeout(() => navigate('/'), 2000);
   };
 
   return (

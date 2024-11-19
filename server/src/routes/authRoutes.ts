@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-const router = Router();
+const router = Router(); // POST: /auth/login
 
 router.post('/login', async (req: Request, res: Response) => { // POST: /auth/login
 

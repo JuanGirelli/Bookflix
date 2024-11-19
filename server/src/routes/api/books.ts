@@ -21,10 +21,10 @@ router.get("/", async (_req, res) =>
     const books = items.map((book:any) =>
     {
         return {
-            title: book.volumeInfo.title,
-            authors: book.volumeInfo.authors,
-            description: book.volumeInfo.description,
-            image: book.volumeInfo.imageLinks.thumbnail
+            title: book?.volumeInfo?.title,
+            authors: book?.volumeInfo?.authors,
+            description: book?.volumeInfo?.description,
+            image: book?.volumeInfo?.imageLinks?.thumbnail
         };
     });
 
