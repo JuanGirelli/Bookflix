@@ -5,7 +5,8 @@ import './index.css';
 import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import ChoicePage from './pages/ChoicePage';
-import BooksPage from './pages/BooksPage.tsx';
+import BooksPage from './pages/booksPage.tsx';
+import MoviesPage from './pages/moviesPage.tsx';
 import Login from './pages/Login.tsx';
 import Signup from './pages/Signup.tsx';
 import { AuthProvider } from './components/AuthContext'; 
@@ -34,20 +35,11 @@ const router = createBrowserRouter([
       {
         path: 'books',
         element: <BooksPage />,
-      },
+      },  
       {
-        path: 'liked-books',
-        element: <LikedBooksPage />,
-      },
-      {
-        path: 'bookmarked-books',
-        element: <BookmarkedBooksPage />,
-      },
-             
-      {
-        path: 'logout',
-        element: <LogoutPage />,
-      },
+        path: 'movies',
+        element: <MoviesPage />,
+      }    
     ],
   },
 ]);
