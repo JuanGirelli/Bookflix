@@ -1,12 +1,18 @@
 import { useState } from 'react';
-import { FaThumbsUp, FaStar } from 'react-icons/fa';
+//mport { FaThumbsUp, FaStar } from 'react-icons/fa';
 import type { Book } from '../interfaces/BooksData';
 
 const BooksPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [books, setBooks] = useState<Book[]>([]);
-  const [likedBooks, setLikedBooks] = useState<string[]>([]);
-  const [bookmarkedBooks, setBookmarkedBooks] = useState<string[]>([]);
+  const [
+    likedBooks,
+    //setLikedBooks
+  ] = useState<string[]>([]);
+  const [
+    bookmarkedBooks,
+    //setBookmarkedBooks
+  ] = useState<string[]>([]);
 
   const handleSearch = async () => {
     try {
@@ -18,21 +24,21 @@ const BooksPage = () => {
     }
   };
 
-  const handleLike = (bookId: string) => {
-    setLikedBooks((prevLikedBooks) => {
-      const updatedLikedBooks = [...prevLikedBooks, bookId];
-      localStorage.setItem('likedBooks', JSON.stringify(updatedLikedBooks));
-      return updatedLikedBooks;
-    });
-  };
+  // const handleLike = (bookId: string) => {
+  //   setLikedBooks((prevLikedBooks) => {
+  //     const updatedLikedBooks = [...prevLikedBooks, bookId];
+  //     localStorage.setItem('likedBooks', JSON.stringify(updatedLikedBooks));
+  //     return updatedLikedBooks;
+  //   });
+  // };
 
-  const handleBookmark = (bookId: string) => {
-    setBookmarkedBooks((prevBookmarkedBooks) => {
-      const updatedBookmarkedBooks = [...prevBookmarkedBooks, bookId];
-      localStorage.setItem('bookmarkedBooks', JSON.stringify(updatedBookmarkedBooks));
-      return updatedBookmarkedBooks;
-    });
-  };
+  // const handleBookmark = (bookId: string) => {
+  //   setBookmarkedBooks((prevBookmarkedBooks) => {
+  //     const updatedBookmarkedBooks = [...prevBookmarkedBooks, bookId];
+  //     localStorage.setItem('bookmarkedBooks', JSON.stringify(updatedBookmarkedBooks));
+  //     return updatedBookmarkedBooks;
+  //   });
+  // };
 
   return (
     <div className="container">
