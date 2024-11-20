@@ -19,7 +19,7 @@ const MoviesPage = () => {
     try {
       const response = await fetch(`/api/movies?q=${searchTerm}`); // Fetch movies from API
       const data = await response.json();
-      setMovies(data.Search || []); // Set movies data from response
+      setMovies(data.movies || []); // Set movies data from response
     } catch (error) {
       console.error('Error fetching movie data:', error);
     }
@@ -58,10 +58,10 @@ const MoviesPage = () => {
       </div>
       <div>
         <h2>Liked Movies</h2>
-        {likedMovies.map((movieId) => {
+        {likedMovies.map((movieId, movieIndex) => {
           const movie = movies.find((m) => m.imdbID === movieId);
           return movie ? (
-            <div key={movieId}>
+            <div key={movieIndex}>
               <h3>{movie.Title}</h3>
               <p>{movie.Year}</p>
               <img src={movie.Poster} alt={movie.Title} />
@@ -71,10 +71,10 @@ const MoviesPage = () => {
       </div>
       <div>
         <h2>Bookmarked Movies</h2>
-        {bookmarkedMovies.map((movieId) => {
+        {bookmarkedMovies.map((movieId, movieIndex) => {
           const movie = movies.find((m) => m.imdbID === movieId);
           return movie ? (
-            <div key={movieId}>
+            <div key={movieIndex}>
               <h3>{movie.Title}</h3>
               <p>{movie.Year}</p>
               <img src={movie.Poster} alt={movie.Title} />
