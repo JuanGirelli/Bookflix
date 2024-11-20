@@ -7,11 +7,16 @@ dotenv.config();
 
 const router = Router();
 
+// get /api/movies
 router.get("/", async (_req, res) =>
 {
-    const Search = _req.query.Search || '';
+    const Search = _req.query.q || '';
 
     const apiKey = process.env.OMDB_API_KEY;
+
+    console.log('search', Search);
+    console.log('apiKey', apiKey);
+
     const apiUrl =`https://www.omdbapi.com/?i=&apikey=${apiKey}&s=${Search}`;
 
     const response = await fetch(apiUrl);
