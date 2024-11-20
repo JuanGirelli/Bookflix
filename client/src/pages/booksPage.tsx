@@ -65,24 +65,27 @@ const BooksPage = () => {
                   <img src={book.image} alt={book.title} className="book-image" />
                 </div>
               </div>
-              <div className="book-actions">
+
+              {/* <div className="book-actions">
                 <button onClick={() => handleLike(book.id)} className="like-button">
                   <FaThumbsUp />
                 </button>
                 <button onClick={() => handleBookmark(book.id)} className="bookmark-button">
                   <FaStar />
                 </button>
-              </div>
+              </div> */}
+
             </div>
           ))}
         </div>
 
         {/* Display liked and bookmarked books */}
+        
         <div className="liked-books">
           <h2>Liked Books</h2>
           <ul>
-            {likedBooks.map((bookId) => (
-              <li key={bookId}>{bookId}</li>
+            {likedBooks.map((bookId, bookIndex) => (
+              <li key={bookIndex}>{bookId}</li>
             ))}
           </ul>
         </div>
@@ -90,8 +93,8 @@ const BooksPage = () => {
         <div className="bookmarked-books">
           <h2>Bookmarked Books</h2>
           <ul>
-            {bookmarkedBooks.map((bookId) => (
-              <li key={bookId}>{bookId}</li>
+            {bookmarkedBooks.map((bookId, bookIndex) => (
+              <li key={bookIndex}>{bookId}</li>
             ))}
           </ul>
         </div>
