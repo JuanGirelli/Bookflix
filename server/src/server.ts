@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;  // Use the port from .env, default to 3001
 
 app.use(express.json());
-app.use(express.static('client/dist'));  // Serve static files from the 'client/dist' directory
+app.use(express.static(path.resolve('../client/dist/')));  // Serve static files from the 'client/dist' directory
 
 // API routes
 app.use('/', router);
@@ -30,5 +30,5 @@ sequelize.sync({ force: false })  // You can set `force: true` only in dev envir
 
 // Serve index.html for non-API routes (if needed)
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/dist/index.html'));  // Adjust based on your client build folder location
+  res.sendFile(path.resolve('../client/dist/index.html'));  // Adjust based on your client build folder location
 });
