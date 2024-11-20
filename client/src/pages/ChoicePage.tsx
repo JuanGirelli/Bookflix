@@ -2,15 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 const ChoicePage = () => {
   const navigate = useNavigate();
-
-  // Logout functionality
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    alert('Logout successful');
-    navigate('/login');  // Redirect to login page after logout
-  };
-
+  
   return (
     <Container>
       {/* Page Content */}
@@ -35,15 +27,7 @@ const ChoicePage = () => {
           </Button>
         </Col>
       </Row>
-      <Col md={3}>
-        <Button
-          variant="danger"
-          className="w-100 mt-3"
-          onClick={handleLogout}
-        >
-          Logout
-        </Button>
-      </Col>
+      
     </Container>
   );
 };
