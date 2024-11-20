@@ -4,12 +4,12 @@ import './index.css';
 
 import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
-import ChoicePage from './pages/ChoicePage';
-import BooksPage from './pages/booksPage.tsx';
-import MoviesPage from './pages/moviesPage.tsx';
+import ChoicePage from './pages/ChoicePage.tsx';
+import BooksPage from './pages/BooksPage.tsx';
+import MoviesPage from './pages/MoviesPage.tsx';
 import Login from './pages/Login.tsx';
 import Signup from './pages/Signup.tsx';
-import { AuthProvider } from './components/AuthContext'; 
+import { AuthProvider } from './components/AuthContext.tsx'; 
 import LogoutPage from './pages/LogoutPage.tsx';
 
 const router = createBrowserRouter([

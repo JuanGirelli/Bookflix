@@ -27,7 +27,6 @@ const MoviesPage = () => {
 
       const data = await response.json();
 
-      console.log('Movie data:', data);
       setMovies(data.movies || []); // Set movies data from response
     } catch (error) {
       console.error('Error fetching movie data:', error);
@@ -141,11 +140,12 @@ const MoviesPage = () => {
       </div>
       <div style={{ marginTop: '20px' }}>
         <h2>Liked Movies</h2>
-        {likedMovies.map((movieId) => {
+        {likedMovies.map((movieId, movieIndex) => {
           const movie = movies.find((m) => m.imdbID === movieId);
           return movie ? (
+
             <div
-              key={movieId}
+              key={movieIndex}
               style={{
                 border: '1px solid #ddd',
                 borderRadius: '8px',
@@ -155,6 +155,7 @@ const MoviesPage = () => {
                 margin: '10px auto',
               }}
             >
+
               <h3>{movie.Title}</h3>
               <p>{movie.Year}</p>
               <img
@@ -168,11 +169,12 @@ const MoviesPage = () => {
       </div>
       <div style={{ marginTop: '20px' }}>
         <h2>Bookmarked Movies</h2>
-        {bookmarkedMovies.map((movieId) => {
+        {bookmarkedMovies.map((movieId, movieIndex) => {
           const movie = movies.find((m) => m.imdbID === movieId);
           return movie ? (
+
             <div
-              key={movieId}
+              key={movieIndex}
               style={{
                 border: '1px solid #ddd',
                 borderRadius: '8px',
@@ -182,6 +184,7 @@ const MoviesPage = () => {
                 margin: '10px auto',
               }}
             >
+
               <h3>{movie.Title}</h3>
               <p>{movie.Year}</p>
               <img

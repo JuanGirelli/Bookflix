@@ -22,7 +22,7 @@ router.get("/", async (_req, res) =>
     const response = await fetch(apiUrl);
     const data:any = await response.json();
     const items = data && data.Search ? data.Search : [];
-
+    
     const movies = items.map((movies:any) =>
     {
         return {
