@@ -1,0 +1,11 @@
+
+
+[]  add more space betwee n nav bar and login (add padding to login page at top)
+[] login form password field just say "password"
+[] make sure  is Forgot your password? is removed
+[] the title for the login form on mobile device is hard to see. move in from for find a solution.
+[] login from signup buttons are hard to see on mobiel device
+[] hide login form if logged in similar to how it's done in the navigator
+[] search form button needs some margin from input field.
+[] add "onSubmit" to search form (if you want extra functinality)
+[] look at bootstrap cards for booking serach section.

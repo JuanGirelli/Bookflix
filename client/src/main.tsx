@@ -9,7 +9,10 @@ import BooksPage from './pages/booksPage.tsx';
 import MoviesPage from './pages/moviesPage.tsx';
 import Login from './pages/Login.tsx';
 import Signup from './pages/Signup.tsx';
-import ForgotPassword from './pages/ForgotPassword.tsx';
+import { AuthProvider } from './components/AuthContext'; 
+import LogoutPage from './pages/LogoutPage.tsx';
+import LikedBooksPage from './pages/LikedBooksPage.tsx'; 
+import BookmarkedBooksPage from './pages/BookmarkedBooksPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -24,10 +27,6 @@ const router = createBrowserRouter([
       {
         path: 'signup',
         element: <Signup />,
-      },
-      {
-        path: 'forgot-password',
-        element: <ForgotPassword />,
       },
       {
         path: 'choice',
@@ -48,6 +47,8 @@ const router = createBrowserRouter([
 const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
-    <RouterProvider router={router} />
+    <AuthProvider> 
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 }
