@@ -11,8 +11,6 @@ import Login from './pages/Login.tsx';
 import Signup from './pages/Signup.tsx';
 import { AuthProvider } from './components/AuthContext'; 
 import LogoutPage from './pages/LogoutPage.tsx';
-import LikedBooksPage from './pages/LikedBooksPage.tsx'; 
-import BookmarkedBooksPage from './pages/BookmarkedBooksPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +37,8 @@ const router = createBrowserRouter([
       {
         path: 'movies',
         element: <MoviesPage />,
-      }    
+      },   
+      { path: 'logout', element: <LogoutPage /> },
     ],
   },
 ]);
