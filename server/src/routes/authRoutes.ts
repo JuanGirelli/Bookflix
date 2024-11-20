@@ -11,14 +11,13 @@ const router = Router(); // POST: /auth/login
 
 router.post('/login', async (req: Request, res: Response) => { // POST: /auth/login
 
-    const { userIdOrEmail, password } = req.body;
+    console.log('POST: /auth/login', req.body);
 
-    console.log(userIdOrEmail);
+    const { userId, password } = req.body;
   
     const user = await User.findOne({
-      where: { username: userIdOrEmail },
+      where: { username: userId },
     });
-
   
     if (!user) {
       return res.status(401).json({ message: 'Authentication failed' });
@@ -34,7 +33,7 @@ router.post('/login', async (req: Request, res: Response) => { // POST: /auth/lo
   
     const secretKey = process.env.JWT_SECRET_KEY || '';
   
-    const token = jwt.sign({ userIdOrEmail: userIdOrEmail }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ userIdOrEmail: userId }, secretKey, { expiresIn: '1h' });
   
     return res.json({ token });
   

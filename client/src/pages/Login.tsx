@@ -4,10 +4,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage = () => {
-  const { isAuthenticated, setUser } = useAuth();
-  const [username, setUsername] = useState('');
+  const { isAuthenticated } = useAuth();
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // Toggle for password visibility
+  const [showPassword, setShowPassword] = useState(false); 
   const [error, setError] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
   const navigate = useNavigate();
@@ -19,14 +19,14 @@ const LoginPage = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        userId: username,
-        password: password,
+        userId,
+        password,
       }),
     });
 
     if (response.ok) {
       const data = await response.json();
-      setUser(data.userId);
+      setUserId(data.userId);
       localStorage.setItem('token', data.token);
 
       // Show success message
@@ -55,9 +55,9 @@ const LoginPage = () => {
       <form onSubmit={handleLogin} className="login-form">
         <input
           type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="UserId"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
           disabled={isAuthenticated}
           className="input"
         />

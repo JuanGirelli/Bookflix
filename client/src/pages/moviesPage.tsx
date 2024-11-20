@@ -7,7 +7,7 @@ const MoviesPage: React.FC = () => {
     Title: string;
     Year: string;
     Poster: string;
-    imbID: string;
+    imdbID: string;
     Plot: string;
   }
 
