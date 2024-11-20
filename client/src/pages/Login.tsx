@@ -1,118 +1,93 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
+import { useAuth } from '../components/AuthContext'; // Ensure correct path
+import { useNavigate, Link } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-const Login: React.FC = () => {
-  const [userIdOrEmail, setUserIdOrEmail] = useState('');
+const LoginPage = () => {
+  const { isAuthenticated, setUser } = useAuth();
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [alert, setAlert] = useState<{ type: string; message: string } | null>(null);
+  const [showPassword, setShowPassword] = useState(false); // Toggle for password visibility
+  const [error, setError] = useState<string>('');
+  const [successMessage, setSuccessMessage] = useState<string>('');
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch('/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userIdOrEmail,
-          password,
-        }),
-      });
+    const response = await fetch('/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: username,
+        password: password,
+      }),
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Login failed.');
-      }
+    if (response.ok) {
+      const data = await response.json();
+      setUser(data.userId);
+      localStorage.setItem('token', data.token);
 
-      const { token } = await response.json();
-      
-      // Store token securely in localStorage
-      localStorage.setItem('token', token);
+      // Show success message
+      setSuccessMessage('User successfully logged in!');
 
-      setAlert({ type: 'success', message: 'Logged in successfully!' });
-
-      // Navigate to the ChoicePage after a short delay
+      // Redirect after a short delay
       setTimeout(() => {
-        setAlert(null);
         navigate('/choice');
-      }, 1000);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setAlert({ type: 'danger', message: error.message });
-      } else {
-        setAlert({ type: 'danger', message: 'An unknown error occurred.' });
-      }
+      }, 2000); // Redirect after 2 seconds
+    } else {
+      setError('Invalid credentials');
     }
   };
 
+  if (isAuthenticated) {
+    return <div>You're already logged in!</div>;
+  }
+
   return (
-    <div className="container">
-      <h2>Login</h2>
-      {alert && (
-        <div className={`alert alert-${alert.type}`} role="alert">
-          {alert.message}
-        </div>
-      )}
-      <form onSubmit={handleLogin} className="form-container">
-        <div className="form-group">
-          <label htmlFor="userIdOrEmail">User ID:</label>
+    <div className="login-container">
+      <h1>Login</h1>
+
+      {successMessage && <div className="success-alert">{successMessage}</div>}
+      {error && <p className="error-text">{error}</p>}
+
+      <form onSubmit={handleLogin} className="login-form">
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          disabled={isAuthenticated}
+          className="input"
+        />
+        <div className="password-container">
           <input
-            type="text"
-            id="userIdOrEmail"
-            value={userIdOrEmail}
-            onChange={(e) => setUserIdOrEmail(e.target.value)}
-            placeholder="Enter your User ID"
-            required
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={isAuthenticated}
+            className="input"
           />
+          <button
+            type="button"
+            className="toggle-password"
+            onClick={() => setShowPassword((prev) => !prev)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </button>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <div className="password-container">
-            <input
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your Password"
-              required
-            />
-            <FontAwesomeIcon
-              icon={showPassword ? faEyeSlash : faEye}
-              onClick={() => setShowPassword(!showPassword)}
-              className="password-toggle-icon"
-            />
-          </div>
-        </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" disabled={isAuthenticated} className="button">
           Login
         </button>
       </form>
-      <p>
-        Forgot your password?{' '}
-        <span
-          style={{ color: 'blue', cursor: 'pointer' }}
-          onClick={() => navigate('/forgot-password')}
-        >
-          Reset it here
-        </span>
-      </p>
-      <p>
-        New user?{' '}
-        <span
-          style={{ color: 'blue', cursor: 'pointer' }}
-          onClick={() => navigate('/signup')}
-        >
-          Sign Up
-        </span>
+
+      <p className="signup-text">
+        New user? <Link to="/signup" className="signup-link">Sign Up Here</Link>
       </p>
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;

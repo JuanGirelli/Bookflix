@@ -8,7 +8,10 @@ import ChoicePage from './pages/ChoicePage';
 import BooksPage from './pages/BooksPage.tsx';
 import Login from './pages/Login.tsx';
 import Signup from './pages/Signup.tsx';
-import ForgotPassword from './pages/ForgotPassword.tsx';
+import { AuthProvider } from './components/AuthContext'; 
+import LogoutPage from './pages/LogoutPage.tsx';
+import LikedBooksPage from './pages/LikedBooksPage.tsx'; 
+import BookmarkedBooksPage from './pages/BookmarkedBooksPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -25,17 +28,26 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path: 'forgot-password',
-        element: <ForgotPassword />,
-      },
-      {
         path: 'choice',
         element: <ChoicePage />,
       },
       {
         path: 'books',
         element: <BooksPage />,
-      },      
+      },
+      {
+        path: 'liked-books',
+        element: <LikedBooksPage />,
+      },
+      {
+        path: 'bookmarked-books',
+        element: <BookmarkedBooksPage />,
+      },
+             
+      {
+        path: 'logout',
+        element: <LogoutPage />,
+      },
     ],
   },
 ]);
@@ -43,6 +55,8 @@ const router = createBrowserRouter([
 const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
-    <RouterProvider router={router} />
+    <AuthProvider> 
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 }

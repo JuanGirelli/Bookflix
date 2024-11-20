@@ -1,119 +1,361 @@
-/* General Page Styling */
+/* General Styles */
 body {
-  font-family: 'Arial', sans-serif;
-  background: #f0f0f0;
+  background-image: url('./assets/BOOKFLIX2.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center horizontally */
-  background-image: url('./assets/images.jpg'), 
-                    url('./assets/tv5.jpg');
-  background-position: left top, right bottom;
-  background-repeat: no-repeat;
-  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  color: #030359;
 }
 
-/* Main Header Styling */
-.page-header {
-  width: 100%;
-  text-align: center;
-  margin: 30px 0; /* Add spacing between Bookflix and other content */
-}
-
-.page-header h1 {
-  font-size: 5rem; /* Make it larger */
-  font-weight: bold; /* Make it bolder */
-  color: #ff4500; /* Bright orange for better visibility */
-  font-family: 'Impact', sans-serif; /* Distinct bold font */
-  text-shadow: 6px 6px 8px rgba(0, 0, 0, 0.6); /* Stronger shadow for bold look */
-  letter-spacing: 6px; /* Increase spacing between letters */
-  text-transform: uppercase; /* Make all letters uppercase */
-  position: relative;
-  top: 20px; /* Place it near the top */
-  z-index: 10;
-}
-
-/* Login Form Styling */
-.form-container {
-  width: 100%;
-  max-width: 400px;
-  margin: auto;
-  text-align: center;
+/* Center container with shadow and background transparency */
+.container {
+  background: rgba(79, 131, 188, 0.8); /* Semi-transparent black */
   padding: 20px;
-  background: white;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-container h2 {
+/* Headings */
+h1, h2, h3 {
+  color: #181164; /* Yellow color for headings */
   text-align: center;
-  font-size: 2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+/* Form Styling */
+.search-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 20px;
-  color: #333;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for login header */
 }
 
-/* Form Fields */
-input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-input:focus {
-  border-color: #007bff;
-}
-
-button {
+.search-button {
+  background-color: #004a8f;
+  color: #fff;
   padding: 10px 20px;
-  margin-top: 10px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+.search-button:hover {
+  background-color: #0064b3;
 }
 
-/* Centering the Content */
-body {
-  justify-content: flex-start; /* Start aligning from the top */
+.input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  font-size: 16px;
 }
 
-.error {
+/* Book List Styling */
+.books-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.book-item {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 75%; /* Make the book details take most of the space */
+}
+
+.book-info {
+  width: 60%; /* Book title and author take up most of the space */
+}
+
+.book-image-container {
+  width: 30%; /* Image container */
+  text-align: right;
+}
+
+.book-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.book-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.like-button, .bookmark-button {
+  background-color: #004a8f;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.like-button:hover, .bookmark-button:hover {
+  background-color: #0064b3;
+}
+
+.bookmarked-books, .liked-books {
+  margin-top: 20px;
+}
+
+.bookmarked-books ul, .liked-books ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.bookmarked-books li, .liked-books li {
+  padding: 5px;
+}
+
+/* Movie Adaptation */
+.book-info p {
+  color: #ff6347; /* Red color for movie adaptation message */
+  font-weight: bold;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  background-color: #181164;
+  padding: 15px;
+  color: white;
+  border-radius: 8px;
+}
+
+.sidebar-link {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar-link:hover {
+  text-decoration: underline;
+}
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #333;
+}
+/* Login Container */
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  text-align: center;
+  background: rgba(79, 131, 188, 0.8); /* Semi-transparent background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.login-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #181164;
+}
+
+/* Form Styling */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Password Field Container */
+.password-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Buttons */
+.button {
+  padding: 10px;
+  background-color: #004a8f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0064b3;
+}
+
+.error-text {
   color: red;
-  margin-top: 10px;
+  font-size: 0.9rem;
 }
 
-.info {
-  color: green;
-  margin-top: 10px;
+.success-alert {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .page-header h1 {
-    font-size: 4rem;
-  }
-
-  .form-container {
-    width: 90%;
-  }
+/* Sign-Up Link */
+.signup-text {
+  margin-top: 20px;
+  font-size: 0.9rem;
 }
 
-@media (max-width: 480px) {
-  .page-header h1 {
-    font-size: 3rem;
-  }
+.signup-link {
+  color: #007bff;
+  text-decoration: none;
+}
 
-  .form-container {
-    padding: 15px;
-  }
+.signup-link:hover {
+  text-decoration: underline;
+}
+/* Signup Page Styling */
+.signup-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background: rgba(79, 131, 188, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-box h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #181164;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #030359;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+/* Password Container */
+.password-container {
+  position: relative;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #004a8f;
+}
+
+/* Button */
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #004a8f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0064b3;
+}
+
+/* Alerts */
+.alert {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+/* Login Link */
+.login-text {
+  margin-top: 15px;
+}
+
+.login-link {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.login-link:hover {
+  text-decoration: none;
 }

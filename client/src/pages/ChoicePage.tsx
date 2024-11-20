@@ -1,24 +1,50 @@
-// ChoicePage.tsx
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const ChoicePage: React.FC = () => {
+import { Container, Row, Col, Button } from 'react-bootstrap';
+const ChoicePage = () => {
   const navigate = useNavigate();
 
-  const handleChoice = (choice: string) => {
-    if (choice === 'books') {
-      navigate('/books');
-    } else if (choice === 'movies') {
-      navigate('/movies');
-    }
+  // Logout functionality
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    alert('Logout successful');
+    navigate('/login');  // Redirect to login page after logout
   };
 
   return (
-    <div>
-      <h1>What would you like to explore?</h1>
-      <button onClick={() => handleChoice('books')}>Books</button>
-      <button onClick={() => handleChoice('movies')}>Movies</button>
-    </div>
+    <Container>
+      {/* Page Content */}
+      <h2>What would you like to explore?</h2>
+      <Row className="justify-content-center mt-4">
+        <Col md={3}>
+          <Button
+            variant="primary"
+            className="w-100 mb-3"
+            onClick={() => navigate('/books')}
+          >
+            Books
+          </Button>
+        </Col>
+        <Col md={3}>
+          <Button
+            variant="success"
+            className="w-100"
+            onClick={() => navigate('/movies')}
+          >
+            Movies
+          </Button>
+        </Col>
+      </Row>
+      <Col md={3}>
+        <Button
+          variant="danger"
+          className="w-100 mt-3"
+          onClick={handleLogout}
+        >
+          Logout
+        </Button>
+      </Col>
+    </Container>
   );
 };
 
