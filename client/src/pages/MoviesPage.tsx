@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './moviesPage.css';
 import MovieCard from '../components/MovieCard.tsx';
 const MoviesPage: React.FC = () => {
   const [searchVal, setSearchVal] = useState('');
-  interface Movie {
+  interface Movies {
     Title: string;
     Year: string;
     Poster: string;
@@ -11,9 +11,9 @@ const MoviesPage: React.FC = () => {
     Plot: string;
   }
 
-  const [movie, getMovies] = useState<Movie[]>([]);
+  const [movies, getMovies] = useState<Movies[]>([]);
 
-  const [likedMovies, setLikedMovies] = useState<string[]>([]); // Liked movie IDs
+  const [likedMovies, setLikedMovies] = useState<string[]>(JSON.parse(localStorage['likedMovies'] || '[]') || []); // Liked movie IDs
   const [bookmarkedMovies, setBookmarkedMovies] = useState<string[]>([]); // Bookmarked movie IDs
 
   const searchAPI = async () => {
@@ -52,6 +52,14 @@ const MoviesPage: React.FC = () => {
   };
 
 
+
+  useEffect(() => {
+
+    if (likedMovies.length > 0) {
+      localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
+    }
+
+  }, [likedMovies]);
  
 
   return (
@@ -65,10 +73,12 @@ const MoviesPage: React.FC = () => {
         onChange={(e) => setSearchVal(e.target.value)}
       />
       <button onClick={searchAPI}>Search</button>
-      <div className ="movies-container" style={{
+     
+     
+     <div className ="movies-container" style={{
         gap: '20px',
       }}>
-        {movie.map((m, index) => (
+        {movies.map((m, index) => (
           <div key={index}>
             {/* <MovieList movies={m} /> */}
             <MovieCard
@@ -81,6 +91,60 @@ const MoviesPage: React.FC = () => {
           </div>
         ))}
       </div>
+
+
+      <div style={{ marginTop: '20px' }}>
+        <h2>Liked Movies</h2>
+        <div className ="movies-container" style={{
+          gap: '20px',
+        }}>
+          {likedMovies.map((movieId, index) => {
+            
+            const movie = movies.find((m) => m.imdbID === movieId);
+
+            if (!movie) return null;
+
+            return <div key={index}>
+              {/* <MovieList movies={m} /> */}
+              <MovieCard
+                movie={movie}
+                likedMovies={likedMovies}
+                bookmarkedMovies={bookmarkedMovies}
+                handleBookmark={handleBookmark}
+                handleLike={handleLike}
+                />
+            </div>
+          } )}
+        </div>
+      </div>
+
+
+      <div style={{ marginTop: '20px' }}>
+        <h2>Bookmarked Movies</h2>
+        <div className ="movies-container" style={{
+          gap: '20px',
+        }}>
+          {bookmarkedMovies.map((movieId, index) => {
+            
+            const movie = movies.find((m) => m.imdbID === movieId);
+
+            if (!movie) return null;
+
+            return <div key={index}>
+              {/* <MovieList movies={m} /> */}
+              <MovieCard
+                movie={movie}
+                likedMovies={likedMovies}
+                bookmarkedMovies={bookmarkedMovies}
+                handleBookmark={handleBookmark}
+                handleLike={handleLike}
+                />
+            </div>
+          } )}
+        </div>
+      </div>
+
+
     </div>
   );
 };
