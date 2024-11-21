@@ -64,8 +64,9 @@ const MoviesPage: React.FC = () => {
 
   return (
     <div className = "MoviePage">
+      <h1>Movie Search</h1>
+        <div className = "input-button">
         
-        <h1>Movie Search</h1>
       <input
         type="text"
         placeholder="Enter movie title"
@@ -73,6 +74,7 @@ const MoviesPage: React.FC = () => {
         onChange={(e) => setSearchVal(e.target.value)}
       />
       <button onClick={searchAPI}>Search</button>
+      </div>
      
      
      <div className ="movies-container" style={{

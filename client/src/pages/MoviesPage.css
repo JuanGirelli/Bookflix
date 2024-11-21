@@ -1,6 +1,17 @@
-
 .MoviePage h1{
-    color:green;
+    color:black;
+}
+.input-button{
+    align-content: baseline;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+.input-button input{
+    width: 50%;
+    height: 30px;
+    border-radius: 5px;
+
 }
 .movies-container {
     display:flex;
@@ -12,6 +23,16 @@
     align-items: center;
         
 }
+.card-title{
+    font-size: 25px;
+    font-weight: bold;
+}
+.card-text{
+    font-weight: bold;
+    font-style: bold, italic;
+    font-size: 15px;
+}
+
 .movies-list {
   overflow-x: auto;
   flex-wrap: nowrap;
