@@ -14,9 +14,6 @@ router.get("/", async (_req, res) =>
 
     const apiKey = process.env.OMDB_API_KEY;
 
-    console.log('search', Search);
-    console.log('apiKey', apiKey);
-
     const apiUrl =`https://www.omdbapi.com/?i=&apikey=${apiKey}&s=${Search}`;
 
     const response = await fetch(apiUrl);
@@ -29,7 +26,7 @@ router.get("/", async (_req, res) =>
             Title: movies?.Title,
             Year: movies?.Year,
             Poster: movies?.Poster,
-            imbID: movies?.imbID,
+            imdbID: movies?.imdbID,
             Plot: movies?.Plot
 
         };
