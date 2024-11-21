@@ -91,20 +91,22 @@ JWT_SECRET_KEY=XXXXX
 ## Usage
 
 1. Open the application in your browser after starting the development server.
+
 2. Sign in or create an account on the login page.
+
    - ![Login Page](./extra/Login.png) 
    - ![Signin Page](./extra/Sign-in.png) 
 
-3. After authentication, navigate to the search page.
+3. After authentication, navigate to the search page. Choose to search for either books or movies and enter a query.
+
    - ![Search Page](./extra/ChoicePage.png) 
 
-4. Choose to search for either books or movies and enter a query.
-   - ![Books Search](./extra/BookSSearch.png)
-
-   - ![Movies Search](./images/movies-search.png)
-
 5. View results.
-   - ![Search Results](./images/search-results.png) 
+  
+   - ![Books Search](./extra/BookSearch.png)
+
+   - ![Movies Search](./extra/MovieSearch.png)
+
 
 ---
 
@@ -133,10 +135,10 @@ JWT_SECRET_KEY=XXXXX
 
 ## Contributing
 
-Juan Girelli
-Shirisha Korukonda Bhattaru
-Camden Cox
-Tabari Latimore
+Juan Girelli,
+Shirisha Korukonda Bhattaru,
+Camden Cox,
+Tabari Latimore.
 
 
 Contributions are welcome! Please follow these steps to contribute:
