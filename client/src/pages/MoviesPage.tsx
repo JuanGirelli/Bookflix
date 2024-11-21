@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './moviesPage.css';
+import './MoviesPage.css';
 import MovieCard from '../components/MovieCard.tsx';
 const MoviesPage: React.FC = () => {
   const [searchVal, setSearchVal] = useState('');
