@@ -65,6 +65,7 @@ const BooksPage = () => {
                 <div className="book-info">
                   <h3>{book.title}</h3>
                   <p>{book.authors?.join(', ')}</p>
+                  <p>{book.description}</p>
                   {book.hasMovie && <p><strong>Movie Adaptation Available!</strong></p>}
                 </div>
                 <div className="book-image-container">

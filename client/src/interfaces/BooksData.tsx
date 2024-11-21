@@ -4,4 +4,6 @@ export interface Book {
     title: string;
     image: string;
     hasMovie?: boolean;
+    description: string;
+
 }
